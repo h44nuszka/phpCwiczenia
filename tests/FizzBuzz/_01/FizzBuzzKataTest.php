@@ -1,7 +1,7 @@
 <?php
 
-namespace Test\FizzBuzz;
-use App\FizzBuzz\FizzBuzzKata;
+namespace Test\FizzBuzz\_01;
+use App\FizzBuzz\_01\FizzBuzzKata;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
@@ -40,5 +40,21 @@ class FizzBuzzKataTest extends TestCase
             'input' => 15,
             'expected' => 'FizzBuzz',
         ];
+    }
+    public function dataProviderForTestFizzBuzz_WhenOutOfRangeExceptionIsRaised(): Generator
+    {
+        yield 'value for number 102' => [
+            'input' => 102,
+            'expected' => \OutOfRangeException::class,
+        ];
+    }
+    public function testFizzBuzz_WhenOutOfRangeExceptionIsRaised(int $number, string $exception): void
+    {
+        $this->expectException($exception);
+
+        $fizzBuzzKata = new FizzBuzzKata();
+        $fizzBuzzKata->fizzBuzz();
+
+        $fizzBuzzKata->getValue($number);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FizzBuzz;
+namespace App\FizzBuzz\_01;
 
 class FizzBuzzKata
 {
@@ -24,6 +24,9 @@ class FizzBuzzKata
 
     public function getValue(int $number): string
     {
+        if(!isset($result[$number -1])){
+            throw new \OutOfRangeException('Invalid number');
+        }
         return $this->result[$number -1];
     }
 
